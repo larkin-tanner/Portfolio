@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larkin Tanner - Electrical Engineering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --vibrant-green: #1fb854;
+    --dark-green: #0d5f2e;
+    --muted-green: #2a8d5f;
+    --charcoal: #1a1a1a;
+    --light-gray: #f0eeeb;
+    --medium-gray: #a8a8a8;
+    --white: #ffffff;
+    --cream: #fefdfb;
+    --about-bg-image: url('Images/About.JPG');
+    --beyond-bg-image: url('Images/Beyond.JPG');
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background-color: var(--cream);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--white);
+    padding: 2rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--charcoal);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--charcoal);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--vibrant-green);
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section - Image Based */
+#home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 0;
+    align-items: stretch;
+    background-color: var(--charcoal);
+    background-image: url('Images/Cover1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(2px);
+}
+
+.hero-portrait {
+    width: min(70%, 420px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem;
+    background-color: rgba(255, 255, 255, 0.75);
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 1.1;
+    color: #111;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-content .subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: #222;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+}
+
+.hero-accent {
+    width: 60px;
+    height: 3px;
+    background-color: #111;
+    margin-bottom: 2rem;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border: 2px solid #111;
+    transition: all 0.3s;
+    width: fit-content;
+    font-family: 'Space Mono', monospace;
+}
+
+.hero-cta:hover {
+    background-color: #111;
+    color: var(--white);
+    gap: 1.5rem;
+}
+
+.hero-cta::after {
+    content: '→';
+    transition: transform 0.3s;
+}
+
+.hero-cta:hover::after {
+    transform: translateX(5px);
+}
+
+/* Section Base */
+section {
+    padding: 6rem 3rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--charcoal);
+    letter-spacing: 0px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    position: relative;
+    padding-left: 2rem;
+}
+
+section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--vibrant-green) 0%, var(--muted-green) 100%);
+}
+
+/* About Section */
+#about {
+    background-color: var(--light-gray);
+    background-image: var(--about-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    position: relative;
+    isolation: isolate;
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 0;
+}
+
+#about > * {
+    position: relative;
+    z-index: 1;
+}
+
+#about h2 {
+    color: #ffffff;
+}
+
+#about h2::before {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#about .about-text h3 {
+    color: #ffffff;
+}
+
+#about .about-text p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#about .about-stat .number {
+    color: #ffffff;
+}
+
+#about .about-stat .label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.about-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.about-image {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--muted-green) 0%, var(--vibrant-green) 100%);
+    border: 2px solid var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.about-image:nth-child(1) {
+    grid-column: span 2;
+    aspect-ratio: 2/1;
+}
+
+.about-image::before {
+    content: none;
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0px;
+    color: var(--charcoal);
+    font-weight: 700;
+}
+
+.about-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+}
+
+.about-stat {
+    display: inline-block;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-stat .number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--vibrant-green);
+    font-family: 'Space Mono', monospace;
+}
+
+.about-stat .label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--medium-gray);
+    margin-top: 0.5rem;
+}
+
+/* Projects Section */
+#projects {
+    background-color: var(--white);
+}
+
+.project-intro {
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 800px;
+    color: var(--charcoal);
+}
+
+.project-filters {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.4rem;
+    background-color: var(--light-gray);
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--vibrant-green);
+    color: var(--white);
+    border-color: var(--vibrant-green);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+.project-card:hover {
+    border-color: var(--vibrant-green);
+    box-shadow: 0 20px 40px rgba(31, 184, 84, 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #1a4d2e 0%, #2a8d5f 50%, #1fb854 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 0.9rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.03) 10px,
+        rgba(255,255,255,0.03) 20px
+    );
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--white);
+    color: var(--charcoal);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 5;
+    font-family: 'Space Mono', monospace;
+}
+
+.project-info {
+    padding: 2rem;
+}
+
+.project-info h3 {
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.project-info p {
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.project-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag {
+    background-color: var(--light-gray);
+    color: var(--charcoal);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--medium-gray);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-family: 'Space Mono', monospace;
+}
+
+.project-link {
+    color: var(--vibrant-green);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.project-link:hover {
+    color: var(--dark-green);
+    letter-spacing: 1px;
+}
+
+/* Experience Section */
+#experience {
+    background-color: var(--light-gray);
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.experience-item {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border: 1px solid var(--medium-gray);
+    border-left: 4px solid var(--vibrant-green);
+    transition: all 0.3s;
+}
+
+.experience-item:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.experience-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+    font-weight: 700;
+}
+
+.experience-item .company {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--vibrant-green);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.experience-item .date {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--medium-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Space Mono', monospace;
+}
+
+.experience-item p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+}
+
+/* Skills Section */
+#skills {
+    background-color: var(--white);
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background-color: var(--light-gray);
+    padding: 2.5rem;
+    border-left: 3px solid var(--vibrant-green);
+    transition: all 0.3s;
+}
+
+.skill-category:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.skill-category h3 {
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    text-align: left;
+    letter-spacing: 0px;
+    font-weight: 700;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    padding: 0.7rem 0;
+    margin-bottom: 0;
+    color: var(--charcoal);
+    border-bottom: 1px solid var(--medium-gray);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+/* Beyond Section */
+#beyond {
+    background-color: var(--charcoal);
+    color: var(--white);
+    background-image: var(--beyond-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    position: relative;
+    isolation: isolate;
+}
+
+#beyond::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 0;
+}
+
+#beyond > * {
+    position: relative;
+    z-index: 1;
+}
+
+#beyond h2 {
+    color: var(--vibrant-green);
+}
+
+#beyond h2::before {
+    background: var(--vibrant-green);
+}
+
+.beyond-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    color: var(--medium-gray);
+}
+
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.hobby-card {
+    position: relative;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--muted-green) 0%, var(--vibrant-green) 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, width 0.35s ease, height 0.35s ease;
+    cursor: pointer;
+}
+
+.hobby-card.is-expanded {
+    position: fixed;
+    inset: 4vh 4vw;
+    width: auto;
+    height: auto;
+    aspect-ratio: auto;
+    transform: none;
+    z-index: 999;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.hobby-card::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></svg>');
+    z-index: 1;
+}
+
+.hobby-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+}
+
+.hobby-card.is-expanded img {
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.hobby-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.65) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 3;
+}
+
+.hobby-caption {
+    position: absolute;
+    left: 1.2rem;
+    right: 1.2rem;
+    bottom: 1.4rem;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 4;
+}
+
+.hobby-card.is-expanded::after,
+.hobby-card.is-expanded .hobby-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hobby-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 5;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: scale(0.9);
+}
+
+.hobby-card.is-expanded .hobby-close {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* Contact Section */
+#contact {
+    background-color: var(--light-gray);
+    text-align: center;
+}
+
+#contact h2 {
+    margin-bottom: 1rem;
+}
+
+.contact-intro {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--charcoal);
+    line-height: 1.8;
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-item {
+    background-color: var(--charcoal);
+    color: var(--white);
+    padding: 2.5rem 2rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid var(--charcoal);
+    position: relative;
+}
+
+.contact-item:hover {
+    background-color: var(--vibrant-green);
+    border-color: var(--vibrant-green);
+}
+
+.contact-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.contact-item p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+footer {
+    background-color: var(--charcoal);
+    color: var(--medium-gray);
+    text-align: center;
+    padding: 2.5rem;
+    border-top: 1px solid var(--medium-gray);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    #home {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image-container {
+        min-height: 400px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .hero-content {
+        padding: 3rem 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 4rem 2rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    nav {
+        padding: 1.5rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+        font-size: 0.7rem;
+    }
+
+    .hero-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-label {
+        font-size: 0.6rem;
+    }
+
+    section {
+        padding: 3rem 1.5rem;
+    }
+
+    .about-image-grid {
+        gap: 1rem;
+    }
+
+    .contact-links {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">LT</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#beyond">Beyond</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+<section id="home">
+                 <div class="projects-grid">
+            <img class="hero-portrait" src="Images/Portrait.PNG" alt="Portrait" />
+    </div>
+    <div class="hero-content">
+        <h1>LARKIN<br>TANNER</h1>
+        <div class="hero-accent"></div>
+        <p class="subtitle">Electrical Engineer</p>
+        <a href="#projects" class="hero-cta">View Work</a>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About</h2>
+        <div class="about-content">
+            <div class="about-image-grid">
+                <div class="about-image"><img src="Images/About2.JPG" alt="About photo" /></div>
+                <div class="about-image"><img src="Images/About1.JPG" alt="About photo" /></div>
+                <div class="about-image"><img src="Images/About3.JPG" alt="About photo" /></div>
+            </div>
+            <div class="about-text">
+                <h3>Driven by Innovation</h3>
+                <p>I'm an electrical engineering student with a passion for designing systems that solve real world problems. My work spans power systems, embedded electronics, and sustainable energy solutions.</p>
+                <p>The electrical engineering label doesn't stop me from pursuing other forms of problem solving. Whether it's desigining systems, testing sensors, designing circuitboards, working on guitar pedals, repairing broken instruments, building surfboards from scratch, or machining and 3D printing things I didn't know I needed, I'm always having a great time problem-solving</p>
+                <p>No matter how big or small the problem, I believe in an enthusiastic hands on approach and an open mind can lead to innovative solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <p class="project-intro">A selection of work that demonstrates my approach to problem-solving</p>
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="personal">Personal</button>
+            <button class="filter-btn" data-filter="class">Class</button>
+            <button class="filter-btn" data-filter="work">Work</button>
+        </div>
+        
+            <div class="projects-grid">
+                <div class="project-card" data-category="class">
+                <div class="project-image">
+                    <span class="project-category">Class</span>
+                        <img src="Images/buoy.png" alt="Water safety buoy" />
+                </div>
+                <div class="project-info">
+                    <h3>Water Safety Buoy</h3>
+                    <h3>Fall 2025 - Spring 2026</h3>
+                    <p>Designed, built, and field-tested solar powered water quality buoy with custom PCB and wiring harness for multi sensor integration with machine learning model to correlate sensor data with lab metrics, accurately predicting bacterial growth for swimmer warnings</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Sensor Integration</span>
+                        <span class="skill-tag">PCB Design</span>
+                        <span class="skill-tag">Power Systems</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+           
+            <div class="project-card" data-category="class">
+                <div class="project-image">
+                    <span class="project-category">Class</span>
+                    <img src="Images/Android.jpg" alt="Android app" />
+                </div>
+                <div class="project-info">
+                    <h3>Event Planning Android App</h3>
+                     <h3>Spring 2025</h3>
+                    <p>Developed and Android event-planning app integrating the Ticketmaster API for live event data • implemented and tested UI components, API calls, and application logic using JUnit, Mockito, and Android ViewModel Architecture</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">API Design</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="class">
+                <div class="project-image">
+                    <span class="project-category">Class</span>
+                    <img src="Images/FPGA.jpg" alt="FPGA project" />
+                </div>
+                <div class="project-info">
+                    <h3>FPGA </h3>
+                    <h3>Spring 2025</h3>
+                    <p>Created a FPGA board video game rendition of the classic nokia game, "Snake". Using knowledge of logic design and digital circuits, implemented game mechanics and display control.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Verilog</span>
+                        <span class="skill-tag">FPGA Game Design</span>
+                        <span class="skill-tag">VGA</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="personal">
+                <div class="project-image">
+                    <span class="project-category">Personal</span>
+                    <img src="Images/surfboard.jpeg" alt="Surfboard fabrication" />
+                </div>
+                <div class="project-info">
+                    <h3>Surfboard Fabrication </h3>
+                    <h3>Summer 2022 - Present</h3>
+                    <p>Design, Templating, shaping, glassing, painting, and sanding surfboards of various shapes, styles, and functions.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Fabrication</span>
+                        <span class="skill-tag">Manual Machining</span>
+                        <span class="skill-tag">Fiberglass</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="personal">
+                <div class="project-image">
+                    <span class="project-category">Personal</span>
+                    <img src="Images/pedal.png" alt="Guitar pedal" />
+                </div>
+                <div class="project-info">
+                    <h3>Guitar Pedal</h3>
+                     <h3>Fall 2025</h3>
+                    <p>Designing, sourcing components, prototyping, assembling a circuit, and constructing a housing for a custom distortion guitar pedal based off of an online schematic.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Circuit Design</span>
+                        <span class="skill-tag">Circuit Analysis</span>
+                        <span class="skill-tag">Transistors</span>
+                        <span class="skill-tag">Audio</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+             <div class="project-card" data-category="personal">
+                <div class="project-image">
+                    <span class="project-category">Personal</span>
+                    <img src="Images/guitar.png" alt="Guitar repair" />
+                </div>
+                <div class="project-info">
+                    <h3>Guitar Repair</h3>
+                     <h3>Fall 2018</h3>
+                    <p>Designing, sourcing components, and rebuilding guitar wiring and electronics from scratch. Redrilling and reassembling when necessary.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Circuit Design</span>
+                        <span class="skill-tag">Audio</span>
+                        <span class="skill-tag">Electromagnetics</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="class">
+                <div class="project-image">
+                    <span class="project-category">class</span>
+                    <img src="Images/lamp.png" alt="Accessible lamp" />
+                </div>
+                <div class="project-info">
+                    <h3>Accessible Lamp</h3>
+                     <h3>Fall 2023</h3>
+                    <p>Custom designed and fabricated accesible lamp housing from scratch. Designed to be used by those with difficulty moving, it uses motion sensors to turn on and asjusts blue light and brightness depending on time of day.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">Testing</span>
+                        <span class="skill-tag">Sensors</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="personal">
+                <div class="project-image">
+                    <span class="project-category">Personal</span>
+                    <img src="Images/Bike.PNG" alt="Fixed-gear bike build" />
+                </div>
+                <div class="project-info">
+                    <h3>Fixed-Gear Bike Build</h3>
+                     <h3>Fall 2025</h3>
+                    <p>Complete conversion of Centurion road bike frame to functioning fixed-gear bicycle using components from local sellers and online resources.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Machining C</span>
+                        <span class="skill-tag">Bicycle Mechanics</span>
+                        <span class="skill-tag">Component Sourcing</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="work">
+                <div class="project-image">
+                    <span class="project-category">Work</span>
+                    <img src="Images/Opti.JPG" alt="Opti site commissioning" />
+                </div>
+                <div class="project-info">
+                    <h3>Opti Site Commissioning</h3>
+                     <h3>Fall 2025</h3>
+                    <p>At Opti, the majority of my time is spent provisioning control and monitoring panels for sites, as well as fixing issues in the field. In November, I was lucky enough to coordinate and run a full site commissioning, working with the contractor to ensure all systems were operational and met project specifications for a very large sight on the North Shore of Massachusetts.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Site Commissioning</span>
+                        <span class="skill-tag">Electrical Safety</span>
+                        <span class="skill-tag">Modbus</span>
+                        <span class="skill-tag">SCADA</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-item">
+                <h3>Stormwater Management Engineer Intern</h3>
+                <p class="company">OptiRTC</p>
+                <p class="date">Summer 2025 - Present</p>
+                <p>At OptiRTC, I support the deployment and troubleshooting
+of IoT-based stormwater management systems, integrating sensors, actuators, and control panels. I conduct seasonal on-site inspections and
+repairs of various sites around New England. I providefield technical support to contractors and local governments directly to deliver best product and solve unique
+problems. I have gained hands-on experience in engineering startup with a small-collaborative team, SCADA/IoT communication
+protocols (e.g Modbus, SDI-12) and RESTful APIs for data acquisition, device coordination and implementation of real
+time environmental data to cloud based monitoring platforms</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Machine Shop Student Advisor</h3>
+                <p class="company">BU EPIC Lab</p>
+                <p class="date">Fall 2023 – Present</p>
+                <p>At the EPIC Lab, I support students with prototyping and fabrication process using precision manufacturing equipment. I lead and coordinate weekly soldering workshops for
+students across different engineering backgrounds, and outside engineering. I teach through hole and surface mount soldering techniques and give students the groundwork for soldering confidently in their own projects. I also provide one-on-one support to students with their projects and
+technical application.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Fiberglass Technician</h3>
+                <p class="company">Tannermatic Boat Repair</p>
+                <p class="date">Summer 2019 - 2024</p>
+                <p>At Tannermatic, I assisted in the fiberglass fabrication and repair of boats, motorcycles, and other unique applications. I gained hands-on experience in the shop and in the field, developing unique problem-solving skills with each repair job. I learned valuable lessons in coming up with creative solutions on the spot and adapting to each different repair scenario.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Surfing Instructor</h3>
+                <p class="company">Self Employed</p>
+                <p class="date">Summer 2020-2022</p>
+                <p>Coordinated and ran weekly surfing lessons for individuals and groups of all skill levels. Developed personalized lesson plans, ensured safety protocols, and provided constructive feedback to help students improve their techniques and confidence in the water.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Electrical</h3>
+                <ul>
+                    <li>Circuit Design & Analysis</li>
+                    <li>PCB Layout (KiCad)</li>
+                    <li>Power Electronics</li>
+                    <li>Signal Processing</li>
+                    <li>Oscilloscope & Multimeter</li>
+                    <li>Embedded Systems</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Mechanical</h3>
+                <ul>
+                    <li>SolidWorks/Onshape</li>
+                    <li>3D Printing</li>
+                    <li>CAD Modeling</li>
+                    <li>Machining</li>
+                    <li>Prototyping</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Computer</h3>
+                <ul>
+                    <li>C/C++</li>
+                    <li>Python</li>
+                    <li>MATLAB/Simulink</li>
+                    <li>API Development</li>
+                    <li>VHDL/Verilog</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>English (Native)</li>
+                    <li>Spanish (Intermediate)</li>
+                    <li>Technical Communication</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Technical Writing</li>
+                    <li>Project Management</li>
+                    <li>Problem Solving</li>
+                    <li>Team Leadership</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beyond Section -->
+    <section id="beyond">
+        <h2>Beyond Engineering</h2>
+        <p class="beyond-intro">Aside from work and school, my passions extend into activities that keep me constantly excited. Click into each photo for more!</p>
+        <div class="hobby-grid">
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby1.PNG" alt="Hobby photo 1" />
+                <div class="hobby-caption">As a lifelong surfer, I look for waves at every opportunity, travelling miles across the northeast, the country, and even to other continents for waves. This is, when I'm not shaping boards or doing other boardsports. </div>
+            </div>
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby2.PNG" alt="Hobby photo 2" />
+                <div class="hobby-caption">It wasn't until I got accepted to BU and joined the snowboard team that I fell in love with snowboarding. As President of the Club now, I spend my weekends in winter travelling to competitions across the northeast, and regionals and nationals competitions each year, going to New York, California, and Oregon to compete at a national level. I have won several gold medals at the regionals stage as an individual and as a team, showing me the importance of being a good leader and coach.</div>
+            </div>
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby3.JPG" alt="Hobby photo 3" />
+                <div class="hobby-caption">I began skateboarding at 5 years old following in my dad's footsteps. It's certainly the most accessible of my hobbies in Boston's urban environment. Skateboarding turns what would be a mundane expedition into an adventure or a mental battle depending on the circumstances. I spend my time filming full length skateboarding videos with friends and compete each year in local competitions.</div>
+            </div>
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby4.PNG" alt="Hobby photo 4" />
+                <div class="hobby-caption">While I am still new to biking, it has been a great way to explore the city and Massachusetts. Bikepacking to Provincetown and back this summer was a huge accomplishment I am very proud of.</div>
+            </div>
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby5.PNG" alt="Hobby photo 5" />
+                <div class="hobby-caption">I have been a guitarist since I was 10 years old, and  since then I have been a part of multiple bands, playing locally, going on tour, recording professionally, creating merch, selling records, and constantly adapting to new environments.</div>
+            </div>
+            <div class="hobby-card">
+                <button class="hobby-close" aria-label="Close">×</button>
+                <img src="Images/Hobby6.JPG" alt="Hobby photo 6" />
+                <div class="hobby-caption">Everywhere I go, I enjoy being outside and pushing my body to its limit, when not participating in any other hobbies that allow me to do that, hiking and exploring new areas is a great way to do so.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p class="contact-intro">Want to collaborate? Reach out below!</p>
+        <div class="contact-links">
+            <a href="mailto:ltanner@bu.edu" class="contact-item">
+                <h3>Email</h3>
+                <p>ltanner@bu.edu</p>
+            </a>
+            <a href="tel:+16178038381" class="contact-item">
+                <h3>Phone</h3>
+                <p>(617) 803 8381</p>
+            </a>
+            <a href="https://linkedin.com/in/larkin-tanner-19b62a2ab/" target="_blank" class="contact-item">
+                <h3>LinkedIn</h3>
+                <p>Connect with me!</p>
+            </a>
+            <a href="https://github.com/ltanner" target="_blank" class="contact-item">
+                <h3>GitHub</h3>
+                <p>View my code!</p>
+            </a>
+            <a href="https://youtube.com/playlist?list=PLejhDNo40Va_8ODclSUX3I9aotzlAz3k9&si=Qq67zDYH_VTHP4EB" target="_blank" class="contact-item">
+                <h3>Music</h3>
+                <p>Music I Have Released Over The Years</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Larkin Tanner. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const hobbyCards = document.querySelectorAll('.hobby-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        hobbyCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('is-expanded');
+                hobbyCards.forEach(c => c.classList.remove('is-expanded'));
+                if (!isExpanded) {
+                    card.classList.add('is-expanded');
+                }
+            });
+        });
+
+        document.querySelectorAll('.hobby-close').forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const card = btn.closest('.hobby-card');
+                if (card) {
+                    card.classList.remove('is-expanded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
