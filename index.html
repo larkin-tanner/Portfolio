@@ -426,6 +426,7 @@ section h2::before {
     font-size: 0.9rem;
     overflow: hidden;
     position: relative;
+    padding: 10px;
 }
 
 .project-image::before {
@@ -445,7 +446,8 @@ section h2::before {
 .project-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #0e0e0e;
 }
 
 .project-category {
@@ -513,6 +515,127 @@ section h2::before {
 .project-link:hover {
     color: var(--dark-green);
     letter-spacing: 1px;
+}
+
+.project-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1200;
+}
+
+.project-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.project-modal-content {
+    width: min(100%, 980px);
+    max-height: 90vh;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    overflow: auto;
+    position: relative;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.project-modal h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-modal .meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted-green);
+    margin-bottom: 1.5rem;
+}
+
+.project-modal-description p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+}
+
+.project-modal-description p:last-child {
+    margin-bottom: 2rem;
+}
+
+.project-modal-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.project-modal-images img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: #0e0e0e;
+    cursor: zoom-in;
+    border: 1px solid var(--light-gray);
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.project-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1300;
+}
+
+.project-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.project-lightbox img {
+    width: min(92vw, 1200px);
+    height: min(92vh, 820px);
+    object-fit: contain;
+}
+
+.project-lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
 }
 
 /* Experience Section */
@@ -968,6 +1091,21 @@ footer {
         </div>
     </section>
 
+    <div class="project-modal" aria-hidden="true">
+        <div class="project-modal-content" role="dialog" aria-modal="true" aria-label="Project details">
+            <button class="project-modal-close" type="button" aria-label="Close">×</button>
+            <h3 class="project-modal-title"></h3>
+            <div class="meta project-modal-meta"></div>
+            <div class="project-modal-description"></div>
+            <div class="project-modal-images"></div>
+        </div>
+    </div>
+
+    <div class="project-lightbox" aria-hidden="true">
+        <button class="project-lightbox-close" type="button" aria-label="Close">×</button>
+        <img src="" alt="" />
+    </div>
+
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
@@ -983,12 +1121,12 @@ footer {
                 <div class="project-card" data-category="class">
                 <div class="project-image">
                     <span class="project-category">Class</span>
-                        <img src="Images/Buoy.png" alt="Water safety buoy" />
+                        <img src="Images/Buoy.png" alt="Water Safety Buoy" />
                 </div>
                 <div class="project-info">
                     <h3>Water Safety Buoy</h3>
                     <h3>Fall 2025 - Spring 2026</h3>
-                    <p>Designed, built, and field-tested solar powered water quality buoy with custom PCB and wiring harness for multi sensor integration with machine learning model to correlate sensor data with lab metrics, accurately predicting bacterial growth for swimmer warnings</p>
+                    <p>Designed, built, and field-tested solar powered water quality buoy</p>
                     <div class="project-skills">
                         <span class="skill-tag">Sensor Integration</span>
                         <span class="skill-tag">PCB Design</span>
@@ -996,6 +1134,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Water Safety Buoy" data-meta="Fall 2025 - Spring 2026 · Class" data-description="Knowing whether a beach is safe to swim in currently requires sending a water sample to a lab and waiting days to weeks at a time. This project was built to close that gap. Working as part of a small academic team, I helped design and deploy a solar powered water quality buoy capable of predicting bacterial growth in real time with no lab sample required. &#10;&#10; The hardware is built around a custom PCB and wiring harness that ties multiple water quality sensors into a single autonomous platform. It is solar powered and designed to survive continuous open water deployment. Sensor readings feed a machine learning model trained against lab verified bacterial metrics, producing swimmer safety predictions that are faster and more continuous than any sample-based approach could offer. The system is fully field tested in open water, validating both the hardware and the model against real environmental conditions. For an academic project, the scope was complete and the output has a direct, legible public health application." data-images="Images/Buoy.png,Images/Buoy2.png,Images/Buoy3.png"></div>
             </div>
 
            
@@ -1007,7 +1146,7 @@ footer {
                 <div class="project-info">
                     <h3>Event Planning Android App</h3>
                      <h3>Spring 2025</h3>
-                    <p>Developed and Android event-planning app integrating the Ticketmaster API for live event data • implemented and tested UI components, API calls, and application logic using JUnit, Mockito, and Android ViewModel Architecture</p>
+                    <p>Developed an Android event-planning app integrating the Ticketmaster API for live event data</p>
                     <div class="project-skills">
                         <span class="skill-tag">C++</span>
                         <span class="skill-tag">Java</span>
@@ -1016,6 +1155,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Event Planning Android App" data-meta="Spring 2025 · Class" data-description="Developed an Android event-planning app integrating the Ticketmaster API for live event data. &#10;&#10; Implemented and tested UI components, API calls, and application logic using JUnit, Mockito, and Android ViewModel Architecture." data-images="Images/Android.jpg"></div>
             </div>
 
             <div class="project-card" data-category="class">
@@ -1026,7 +1166,7 @@ footer {
                 <div class="project-info">
                     <h3>FPGA Snake Game Design</h3>
                     <h3>Spring 2025</h3>
-                    <p>Created a FPGA board video game rendition of the classic nokia game, "Snake". Using knowledge of logic design and digital circuits, implemented game mechanics and display control.</p>
+                    <p>Created a FPGA board video game rendition of the classic nokia game, 'Snake'</p>
                     <div class="project-skills">
                         <span class="skill-tag">Verilog</span>
                         <span class="skill-tag">FPGA Game Design</span>
@@ -1034,6 +1174,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="FPGA Snake Game Design" data-meta="Spring 2025 · Class" data-description="Created a FPGA board video game rendition of the classic nokia game, 'Snake'. &#10;&#10; Using knowledge of logic design and digital circuits, implemented game mechanics and display control." data-images="Images/FPGA.jpg,Images/Snake2.PNG"></div>
             </div>
 
             <div class="project-card" data-category="personal">
@@ -1052,6 +1193,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Surfboard Fabrication" data-meta="Summer 2022 - Present · Personal" data-description="Designed and shaped a handful of surfboards across different styles and functions, teaching myself the craft and managing every stage of production independently. Each board starts with a foam blank. It is templated, cut to the outline, and shaped by hand using planers, sanding blocks, and rail guides to achieve the rocker, concave, and rail geometry that defines how the board performs. &#10;&#10; From there, the board is fiberglassed, hot coated, and finish sanded before art is applied and fins and leash plugs are installed and set. Every stage demands a different skill set and a different kind of attention. Shaping is about feel and geometry, glassing is about working cleanly as fast as you can before resin kicks, and finishing is about the surface quality. Building across multiple shapes has meant learning how design decisions at the blank stage translate into real performance differences underfoot. And the best part is then getting to test that directly in the water." data-images="Images/Surfboard1.PNG,Images/Surfboard2.PNG,Images/Surfboard3.PNG"></div>
             </div>
 
             <div class="project-card" data-category="personal">
@@ -1062,7 +1204,7 @@ footer {
                 <div class="project-info">
                     <h3>Guitar Pedal</h3>
                      <h3>Fall 2025</h3>
-                    <p>Designing, sourcing components, prototyping, assembling a circuit, and constructing a housing for a custom distortion guitar pedal based off of an online schematic.</p>
+                    <p>Designing, sourcing components, prototyping, assembling a circuit, and constructing a housing</p>
                     <div class="project-skills">
                         <span class="skill-tag">Circuit Design</span>
                         <span class="skill-tag">Circuit Analysis</span>
@@ -1071,6 +1213,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Guitar Pedal" data-meta="Fall 2025 · Personal" data-description="Built a custom distortion pedal from scratch, working from an online schematic and working on every stage of the process independently. Started with component sourcing and breadboard prototyping to verify the behavior and dial in component values before committing to the final build. Adjusting resistor and capacitor values to tune the distortion character beyond the base schematic. &#10;&#10; The circuit was transferred to a pcb with point-to-point soldering, then housed in a custom sheet metal enclosure fabricated to fit the board and hardware layout. Drilling, forming, and finishing the enclosure by hand added a fabrication dimension to the build. The result is a fully functional distortion pedal built across analog electronics, signal chain design, soldering, and sheet metal work." data-images="Images/Pedal.PNG"></div>
             </div>
 
              <div class="project-card" data-category="personal">
@@ -1081,7 +1224,7 @@ footer {
                 <div class="project-info">
                     <h3>Guitar Repair</h3>
                      <h3>Fall 2018</h3>
-                    <p>Designing, sourcing components, and rebuilding guitar wiring and electronics from scratch. Redrilling and reassembling when necessary.</p>
+                    <p>Designing, sourcing components, and rebuilding guitar wiring and electronics from scratch.</p>
                     <div class="project-skills">
                         <span class="skill-tag">Circuit Design</span>
                         <span class="skill-tag">Audio</span>
@@ -1089,6 +1232,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Guitar Repair" data-meta="Fall 2018 · Personal" data-description="Rewired a guitar from scratch, replacing the stock wiring harness with a custom configuration built around new pickups and an expanded control layout. Selected pickup and potentiometer values deliberately to match impedance to get the tonal response I was after. I then drilled and routed the body to accommodate additional pots for more tone shaping options than the original design allowed. &#10;&#10; The work involved soldering, systematic testing at each stage for continuity issues, and enough iteration to understand how each component choice affects the final sound." data-images="Images/Guitar.PNG,Images/Guitar2.PNG"></div>
             </div>
 
             <div class="project-card" data-category="class">
@@ -1099,7 +1243,7 @@ footer {
                 <div class="project-info">
                     <h3>Accessible Lamp</h3>
                      <h3>Fall 2023</h3>
-                    <p>Custom designed and fabricated accesible lamp housing from scratch. Designed to be used by those with difficulty moving, it uses motion sensors to turn on and asjusts blue light and brightness depending on time of day.</p>
+                    <p>Custom designed and fabricated accessible lamp housing from scratch. </p>
                     <div class="project-skills">
                         <span class="skill-tag">Arduino</span>
                         <span class="skill-tag">Prototyping</span>
@@ -1108,6 +1252,7 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Accessible Lamp" data-meta="Fall 2023 · Class" data-description="The design constraint for this coursework project was strict: build a lamp that someone with limited mobility could use without any physical interaction. The result was a fully custom fixture that activates via motion detection and adapts its brightness and blue light levels automatically throughout the day. This meant no switches, no dials, no buttons. &#10;&#10; The housing was fabricated using a combination of 3D printing, sheet metal, and machined parts, with each method selected for where it made sense structurally and geometrically. An Arduino handled sensor input, running the time based lighting logic, and driving the LED output. Spanning CAD and fabrication through to embedded firmware, it was definitely a big struggle I've completed in an academic setting." data-images="Images/Lamp.PNG"></div>
             </div>
 
             <div class="project-card" data-category="personal">
@@ -1118,14 +1263,15 @@ footer {
                 <div class="project-info">
                     <h3>Fixed-Gear Bike Build</h3>
                      <h3>Fall 2025</h3>
-                    <p>Complete conversion of Centurion road bike frame to functioning fixed-gear bicycle using components from local sellers and online resources.</p>
+                    <p>Complete conversion of Centurion road bike frame to functioning fixed-gear bicycle</p>
                     <div class="project-skills">
-                        <span class="skill-tag">Machining C</span>
+                        <span class="skill-tag">Mechanical Design</span>
                         <span class="skill-tag">Bicycle Mechanics</span>
                         <span class="skill-tag">Component Sourcing</span>
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Fixed-Gear Bike Build" data-meta="Fall 2025 · Personal" data-description="Fixed gear bikes are mechanically simple, but building one from a road bike frame is a complicated process. They become a surprisingly involved exercise in geometric compatibility and mechanical precision. I sourced every component myself, cross-referencing chainline specs, dropout spacing, bottom bracket threading, and gear ratios across a mix of local shops and online sellers before settling on a parts list that would actually work together and not break the bank. &#10;&#10; Getting the build right meant dialing in chain tension without any of the slack compensation a derailleur system provides, aligning the drivetrain to keep lateral load off the bottom bracket, and tuning the overall setup until it felt right. The margin for sloppiness is low on a fixed drivetrain. This constraint made it a rewarding project in applied mechanical thinking." data-images="Images/Bike.PNG,Images/Bike2.PNG,Images/Bike3.PNG"></div>
             </div>
 
             <div class="project-card" data-category="work">
@@ -1136,7 +1282,7 @@ footer {
                 <div class="project-info">
                     <h3>Opti Site Commissioning</h3>
                      <h3>Fall 2025</h3>
-                    <p>At Opti, the majority of my time is spent provisioning control and monitoring panels for sites, as well as fixing issues in the field. In November, I was lucky enough to coordinate and run a full site commissioning, working with the contractor to ensure all systems were operational and met project specifications for a very large sight on the North Shore of Massachusetts.</p>
+                    <p>Commissioning of a water retention wet pond site</p>
                     <div class="project-skills">
                         <span class="skill-tag">Site Commissioning</span>
                         <span class="skill-tag">Electrical Safety</span>
@@ -1145,9 +1291,54 @@ footer {
                     </div>
                     <a href="#" class="project-link">Learn more →</a>
                 </div>
+                <div class="project-detail" data-title="Opti Site Commissioning" data-meta="Fall 2025 · Work" data-description="At Opti, my core work is configuring and maintaining control and monitoring panels for deployed sites. This means hands on engagement with the electrical and mechanical systems that keep real infrastructure running. This involves field visits to diagnose issues, iterating on panel configurations, and making sure monitoring pipelines stay accurate and reliable. &#10;&#10; In November, I had the opportunity to coordinate and run a full site commissioning for one of our largest installations on the North Shore. This was a project that required close collaboration with the site contractor, systematic validation of interconnected electrical and mechanical systems, and sign off against detailed project specifications. Owning that process from coordination through final verification gave me a much sharper picture of how large scale systems are brought online, and deepened my fluency with control infrastructure at a scope I hadn't worked at before." data-images="Images/Opti.JPG,Images/Opti2.PNG,Images/Opti3.PNG"></div>
             </div>
         </div>
+
+        <div class="project-card" data-category="work">
+                <div class="project-image">
+                    <span class="project-category">Work</span>
+                    <img src="Images/Boat1.PNG" alt="Fiberglass Boat Repair" />
+                </div>
+                <div class="project-info">
+                    <h3>Fiberglass Boat Repair</h3>
+                     <h3>Summer 2023</h3>
+                    <p>Repairing and maintaining fiberglass boats.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Fiberglass Repair</span>
+                        <span class="skill-tag">Boat Maintenance</span>
+                        <span class="skill-tag">Composite Materials</span>
+                        <span class="skill-tag">Marine Safety</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+                <div class="project-detail" data-title="Fiberglass Boat Repair" data-meta="Summer 2023 · Work" data-description="Worked in a small boat repair business performing structural repairs, mechanical overhauls, and cosmetic finishing on a wide range of recreational and commercial vessels. Projects ranged from composite rib repair of Rhodes 19 sailboats and cockpit floor replacement on fishing trawlers, to engine remounting, mast installation, hull buffing, and full-vessel decal application. Also managed boat launches and rigging prep for the sailing season. &#10;&#10; Each project demanded hands on problem-solving under real constraints. I was required to diagnose the right repair approach, working with fiberglass composites and mechanical systems, and delivering finished work to a professional standard. This experience built practical fluency in materials, tolerances, and the kind of iterative troubleshooting that translates directly into engineering." data-images="Images/Boat1.PNG,Images/Boat2.PNG,Images/Boat3.PNG"></div>
+            </div>
+        </div>
+
+<div class="project-card" data-category="personal">
+                <div class="project-image">
+                    <span class="project-category">Personal</span>
+                    <img src="Images/Website.PNG" alt="This Website!" />
+                </div>
+                <div class="project-info">
+                    <h3>This Website</h3>
+                     <h3>Winter 2026</h3>
+                    <p>Developing and designing a personal portfolio website from scratch</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">UI Design</span>
+                        <span class="skill-tag">Version Control</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                    <a href="#" class="project-link">Learn more →</a>
+                </div>
+                <div class="project-detail" data-title="This Website" data-meta="Winter 2026 · Personal" data-description="Designed and built this portfolio from scratch using HTML, CSS, and vanilla JavaScript, writing and iterating on all code in VS Code without a framework or template as a starting point. Layout, typography, responsiveness, and interaction behavior were all handled manually. This meant making deliberate decisions about structure and style rather than inheriting them from a boilerplate. &#10;&#10; The site is version controlled with Git and deployed via GitHub Pages, with a workflow that keeps development and production in sync. Building the portfolio itself became a project in front-end fundamentals, design decision-making, and the basics of a real deployment pipeline." data-images="Images/Website.PNG"></div>
+            </div>
+
+
     </section>
+
 
     <!-- Experience Section -->
     <section id="experience">
@@ -1324,6 +1515,15 @@ technical application.</p>
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
         const hobbyCards = document.querySelectorAll('.hobby-card');
+        const projectModal = document.querySelector('.project-modal');
+        const projectModalTitle = document.querySelector('.project-modal-title');
+        const projectModalMeta = document.querySelector('.project-modal-meta');
+        const projectModalDescription = document.querySelector('.project-modal-description');
+        const projectModalImages = document.querySelector('.project-modal-images');
+        const projectModalClose = document.querySelector('.project-modal-close');
+        const projectLightbox = document.querySelector('.project-lightbox');
+        const projectLightboxImage = projectLightbox.querySelector('img');
+        const projectLightboxClose = document.querySelector('.project-lightbox-close');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1338,6 +1538,82 @@ technical application.</p>
                     }
                 });
             });
+        });
+
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const card = link.closest('.project-card');
+                const detail = card ? card.querySelector('.project-detail') : null;
+                if (!detail) {
+                    return;
+                }
+
+                projectModalTitle.textContent = detail.dataset.title || '';
+                projectModalMeta.textContent = detail.dataset.meta || '';
+                projectModalDescription.innerHTML = '';
+                projectModalImages.innerHTML = '';
+
+                const description = detail.dataset.description || '';
+                const paragraphs = description.split(/\n\s*\n/).map(text => text.trim()).filter(Boolean);
+                if (paragraphs.length === 0) {
+                    const fallback = document.createElement('p');
+                    fallback.textContent = description.trim();
+                    projectModalDescription.appendChild(fallback);
+                } else {
+                    paragraphs.forEach(text => {
+                        const para = document.createElement('p');
+                        para.textContent = text;
+                        projectModalDescription.appendChild(para);
+                    });
+                }
+
+                const images = (detail.dataset.images || '').split(',').map(item => item.trim()).filter(Boolean);
+                images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = detail.dataset.title || 'Project image';
+                    img.addEventListener('click', () => {
+                        projectLightboxImage.src = src;
+                        projectLightboxImage.alt = img.alt;
+                        projectLightbox.classList.add('is-open');
+                    });
+                    projectModalImages.appendChild(img);
+                });
+
+                projectModal.classList.add('is-open');
+                projectModal.setAttribute('aria-hidden', 'false');
+            });
+        });
+
+        projectModal.addEventListener('click', (event) => {
+            if (event.target === projectModal) {
+                projectModal.classList.remove('is-open');
+                projectModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        projectModalClose.addEventListener('click', () => {
+            projectModal.classList.remove('is-open');
+            projectModal.setAttribute('aria-hidden', 'true');
+        });
+
+        projectLightbox.addEventListener('click', (event) => {
+            if (event.target === projectLightbox) {
+                projectLightbox.classList.remove('is-open');
+            }
+        });
+
+        projectLightboxClose.addEventListener('click', () => {
+            projectLightbox.classList.remove('is-open');
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                projectModal.classList.remove('is-open');
+                projectModal.setAttribute('aria-hidden', 'true');
+                projectLightbox.classList.remove('is-open');
+            }
         });
 
         hobbyCards.forEach(card => {
